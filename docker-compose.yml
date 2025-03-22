@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+
+  app:
+    container_name: laral-aws-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - laral-aws
+
+  nginx:
+    container_name: laral-aws-nginx
+    image: nginx:1.27.4-alpine
+    restart: unless-stopped
+    ports:
+      - "8813:80"
+    volumes:
+      - ./:/var/www
+      - ./.docker/nginx/:/etc/nginx/conf.d/
+    networks:
+      - laral-aws
+
+networks:
+  laral-aws:
+    driver: bridge
