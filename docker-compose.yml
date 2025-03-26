@@ -13,6 +13,7 @@ services:
       - ./:/var/www
     networks:
       - laral-aws
+      - localstack-network
 
   nginx:
     container_name: laral-aws-nginx
@@ -29,3 +30,5 @@ services:
 networks:
   laral-aws:
     driver: bridge
+  localstack-network:
+    name: localstack-network

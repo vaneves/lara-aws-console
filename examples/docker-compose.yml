@@ -6,7 +6,6 @@ services:
     container_name: laral-aws-localstack
     image:
       localstack/localstack:stable
-    network_mode: bridge
     ports:
       - "${EDGE_PORT-4566}:4566"
     environment:
@@ -21,3 +20,9 @@ services:
       - "./localstack_bootstrap:/etc/localstack/init/ready.d"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - localstack-network
+
+networks:
+  localstack-network:
+    name: localstack-network
