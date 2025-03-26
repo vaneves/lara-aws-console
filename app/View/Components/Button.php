@@ -11,6 +11,7 @@ class Button extends Component
         public readonly string $type = 'button',
         public readonly bool $primary = false,
         public readonly bool $disabled = false,
+        public readonly ?string $href = null,
     ) {}
 
     protected function getSize(): string 

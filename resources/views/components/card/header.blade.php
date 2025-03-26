@@ -1,0 +1,1 @@
+<h3 class="text-xl font-semibold text-gray-700 mb-4">{{ $slot }}</h3>
