@@ -22,6 +22,10 @@ readonly class Queue
         public int $receiveMessageWaitTimeSeconds,
         public int $visibilityTimeout,
         public bool $sqsManagedSseEnabled,
+        public bool $contentBasedDeduplication = false,
+        public bool $highThroughputModeEnabled = false,
+        public ?string $deduplicationScope = null,
+        public ?QueueRedrivePolicy $redrivePolicy = null,
     ) {}
 
     private static function extractNameFromUrl(string $queueUrl): string
@@ -36,6 +40,7 @@ readonly class Queue
 
     public static function fromArrayAttributes(string $queueUrl, array $attributes): self
     {
+        // dd($attributes);
         return new self(
             self::extractNameFromUrl($queueUrl), 
             $queueUrl,
@@ -51,7 +56,19 @@ readonly class Queue
             (int)$attributes['MessageRetentionPeriod'],
             (int)$attributes['ReceiveMessageWaitTimeSeconds'],
             (int)$attributes['VisibilityTimeout'],
-            filter_var($attributes['SqsManagedSseEnabled'], FILTER_VALIDATE_BOOLEAN),
+            bool_in_array($attributes, 'SqsManagedSseEnabled'),
+            bool_in_array($attributes, 'ContentBasedDeduplication'),
+            bool_in_array($attributes, 'HighThroughputModeEnabled'),
+            $attributes['DeduplicationScope'] ?? null,
+            self::mountQueueRedrivePolicy($attributes),
         );
+    }
+
+    private static function mountQueueRedrivePolicy(array $attributes): ?QueueRedrivePolicy {
+        if (! isset($attributes['RedrivePolicy'])) {
+            return null;
+        }
+
+        return QueueRedrivePolicy::fromJsonString($attributes['RedrivePolicy']);
     }
 }

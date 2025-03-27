@@ -1,5 +1,5 @@
 <x-layout>
-  <x-card title="Queues">
+  <x-card>
     <x-card.header>
       <div class="mb-3 flex justify-between">
         <div>
@@ -26,7 +26,7 @@
         @foreach($queues->items() as $queue)
         <tr class="border-b border-gray-200 hover:bg-gray-50">
           <td class="py-2">
-            <a href="" class="text-blue-600">{{ $queue->name }}</a>
+            <a href="{{ route('sqs.view', ['name' => $queue->name]) }}" class="text-blue-600">{{ $queue->name }}</a>
           </td>
           <td class="py-2">{{ $queue->type }}</td>
           <td class="py-2">{{ $queue->created }}</td>
