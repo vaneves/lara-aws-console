@@ -7,6 +7,7 @@
         </div>
         <div>
           <x-button-sm type="link" href="">Refresh</x-button.sm>
+          <x-button-sm type="link" href="" primary>Create Queue</x-button.sm>
         </div>
       </div>
       <x-form.search name="search" />
