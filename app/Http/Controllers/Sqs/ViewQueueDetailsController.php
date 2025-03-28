@@ -9,15 +9,17 @@ class ViewQueueDetailsController extends Controller
 {
     public function __construct(
         private readonly FindQueueAttributesService $service,
+        private readonly BreadcrumbStackForSqs $breadcrumbStack,
     ) {}
 
     public function view(string $queueName)
     {
+        $this->breadcrumbStack->add($queueName);
         $queue = $this->service->execute($queueName);
 
-        // dd($queue);
         return view('sqs.view', [
             'queue' => $queue,
+            'breadcrumbStack' => $this->breadcrumbStack,
         ]);
     }
 }

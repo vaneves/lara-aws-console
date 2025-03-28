@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :breadcrumb-stack="$breadcrumbStack">
   <x-card>
     <x-card.header>
       <div class="mb-3 flex justify-between">

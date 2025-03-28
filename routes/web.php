@@ -12,5 +12,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/home', function () {
+    return 'home';
+})->name('home');
+
+
 Route::get('/sqs', [ListPaginatedQueueController::class, 'view'])->name('sqs');
 Route::get('/sqs/{name}', [ViewQueueDetailsController::class, 'view'])->name('sqs.view');

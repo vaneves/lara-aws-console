@@ -11,7 +11,10 @@
         <x-layout.menu-item href="/services" active>Services</x-menu-item>
         <x-layout.menu-item href="https://github.com/vaneves/lara-aws-console" new-window>GitHub</x-menu-item>
     </x-layout.menu>
-    <main class="p-6 max-w-7xl mx-auto">
+    @if ($breadcrumbs)
+      <x-layout.breadcrumb :breadcrumbs="$breadcrumbs" />
+    @endif
+    <main class="p-3 pt-6 max-w-7xl mx-auto">
       {{ $slot }}
     </main>
   </body>

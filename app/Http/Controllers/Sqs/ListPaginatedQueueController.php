@@ -10,6 +10,7 @@ class ListPaginatedQueueController extends Controller
 {
     public function __construct(
         private readonly ListPaginatedQueueService $service,
+        private readonly BreadcrumbStackForSqs $breadcrumbStack,
     ) {}
 
     public function view(Request $request)
@@ -22,7 +23,8 @@ class ListPaginatedQueueController extends Controller
         );
         
         return view('sqs.list', [
-            'queues' => $queues
+            'queues' => $queues,
+            'breadcrumbStack' => $this->breadcrumbStack,
         ]);
     }
 }
