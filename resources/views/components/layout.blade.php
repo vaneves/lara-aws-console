@@ -8,10 +8,10 @@
   </head>
   <body class="bg-gray-100 min-h-screen">
     <x-layout.menu>
-        <x-layout.menu-item href="/services" active>Services</x-menu-item>
+        <x-layout.menu-item href="/home" active>Services</x-menu-item>
         <x-layout.menu-item href="https://github.com/vaneves/lara-aws-console" new-window>GitHub</x-menu-item>
     </x-layout.menu>
-    @if ($breadcrumbs)
+    @if (isset($breadcrumbs))
       <x-layout.breadcrumb :breadcrumbs="$breadcrumbs" />
     @endif
     <main class="p-3 pt-6 max-w-7xl mx-auto">

@@ -13,7 +13,7 @@ class BreadcrumbStackForHome implements BreadcrumbStack
     {
         $this->collection = new BreadcrumbCollection();
         $this->add(
-            label: 'Home',
+            label: 'Services',
             link: route('home'),
         );
     }

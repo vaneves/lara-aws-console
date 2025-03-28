@@ -12,16 +12,16 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-.grid > div:nth-child(3n + 1) {
+.detail-item-list.grid > div:nth-child(3n + 1) {
   border-left: none;
 }
 @media (max-width: 1024px) {
-  .grid > div:nth-child(2n + 1) {
+  .detail-item-list.grid > div:nth-child(2n + 1) {
     border-left: none;
   }
 }
 @media (max-width: 640px) {
-  .grid > div {
+  .detail-item-list.grid > div {
     border-left: none;
   }
 }
